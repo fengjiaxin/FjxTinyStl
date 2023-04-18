@@ -59,7 +59,7 @@ RandomAccessIter __lower_bound(RandomAccessIter first, RandomAccessIter last, co
     return first;
 }
 
-template <class ForwardIter, T>
+template <class ForwardIter, class T>
 ForwardIter lower_bound(ForwardIter first, ForwardIter last, const T& value) {
     return __lower_bound(first, last, value, mystl::distance_type(first), mystl::iterator_category(first));
 }
