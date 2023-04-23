@@ -11,6 +11,7 @@
 #include <new>
 #include <type_traits>
 #include "iterator.h"
+#include "util.h"
 
 namespace mystl
 {
@@ -31,6 +32,11 @@ void construct(Ty1* ptr, const Ty2& value) {
 // 1.如果类的的析构函数是trivial(不重要的)，不需要调用析构函数
 // 2.如果类的析构函数是non-trivial(重要的)， 需要调用析构函数
 
+template <class Ty, class... Args>
+void construct(Ty* ptr, Args&&... args)
+{
+    ::new ((void*)ptr) Ty(mystl::forward<Args>(args)...);
+}
 
 template <class Ty>
 void destroy(Ty* ptr) {
